@@ -8,7 +8,6 @@ type ImmutableArray is uint256;
 
 library LibImmutableArray {
     uint256 constant ONE_WORD = 32;
-    uint256 constant ADDRESS_TYPE_SIZE = 20;
 
     error ImmutableArrayIndexOutOfBounds();
 

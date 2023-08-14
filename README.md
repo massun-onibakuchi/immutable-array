@@ -45,7 +45,7 @@ contract ImmutableArrayExample {
 | Length: 3    |                     | Static size array | Dynamic size array | ImmutableArray |
 | ------------ | ------------------- | ----------------- | ------------------ | -------------- |
 | getArray()   | Read entire array   | 12936             | 15406              | 10305          |
-| getArrayAt() | Read single element | 12644             | 14801              | 13860          |
+| getArrayAt() | Read single element | 7623              | 9780               | 8839           |
 
 ### Requirements
 

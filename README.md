@@ -6,7 +6,7 @@ Under the hood, ImmutableArray uses SSTORE2 to store the elements of the array w
 
 ### When to use ImmutableArray over Solidity arrays:
 
-If you don't need to change the elements of the array after initialization, you can use ImmutableArray instead of a dynamic array. Initializing immutable arrays can be expensive because it deploys a contract, but accessing them is cheaper than static-size arrays if the length of the array is more than 2.
+If you don't need to change the elements of the array after initialization, you can use ImmutableArray instead of a dynamic array. Initializing immutable arrays can be expensive because it deploys a contract, but accessing entire array is cheaper than static-size arrays.
 
 Not to mention, if you know size of the array at compile time, hardcoding each element as a immutable variable is by far the cheapest option.
 
@@ -14,12 +14,13 @@ Not to mention, if you know size of the array at compile time, hardcoding each e
 
 ### Example
 
-```sol
+```solidity
 import {LibImmutableArray, ImmutableArray} from "src/LibImmutableArray.sol";
 
 contract ImmutableArrayExample {
     using LibImmutableArray for ImmutableArray;
 
+    /// You can use `immutable` keyword
     ImmutableArray immutable imutArray;
 
     constructor(address[] memory accounts) {
@@ -36,6 +37,15 @@ contract ImmutableArrayExample {
     }
 }
 ```
+
+### Benchmark
+
+> How to reproduce: forge test --mt=testGas
+
+| Length: 3    |                     | Static size array | Dynamic size array | ImmutableArray |
+| ------------ | ------------------- | ----------------- | ------------------ | -------------- |
+| getArray()   | Read entire array   | 12936             | 15406              | 10305          |
+| getArrayAt() | Read single element | 12644             | 14801              | 13860          |
 
 ### Requirements
 

@@ -47,8 +47,9 @@ library LibImmutableArray {
                 revert(0x1c, 0x04)
             }
         }
-        // ???(32bytes) + length(32bytes) + elements[0], elements[1], elements[2], ...
+        // dynamic bytes is concat of pointer(32bytes) + length(32bytes) + elements[0], elements[1], elements[2], ...
         // read 1 word using SSTORE2 at [element: element + 0x20]
+        // `ret` is dynamic bytes of length 0x20 whose content is `element[index]`
         bytes memory ret = SSTORE2.read(pointer(self), (2 + index) * ONE_WORD, (3 + index) * ONE_WORD);
         // read a element following the length.
         assembly {

@@ -42,10 +42,10 @@ contract ImmutableArrayExample {
 
 > How to reproduce: forge test --mt=testGas
 
-| Length: 3    |                     | Static size array | Dynamic size array | ImmutableArray |
-| ------------ | ------------------- | ----------------- | ------------------ | -------------- |
-| getArray()   | Read entire array   | 12936             | 15406              | 10305          |
-| getArrayAt() | Read single element | 7623              | 9780               | 8839           |
+| Length: 3            |                     | Static size array | Dynamic size array | ImmutableArray |
+| -------------------- | ------------------- | ----------------- | ------------------ | -------------- |
+| testGas_getArray()   | Read entire array   | 12936             | 15406              | 10305          |
+| testGas_getArrayAt() | Read single element | 7623              | 9780               | 8839           |
 
 ### Requirements
 

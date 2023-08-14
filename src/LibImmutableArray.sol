@@ -28,7 +28,7 @@ library LibImmutableArray {
         }
     }
 
-    function pointer(ImmutableArray self) internal pure returns (address ptr) {
+    function pointer(ImmutableArray self) internal pure returns (address) {
         return address(uint160(ImmutableArray.unwrap(self)));
     }
 

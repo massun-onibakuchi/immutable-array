@@ -2,7 +2,7 @@
 
 This is a simple wrapper designed around SSTORE2, serving to emulate immutable arrays. Nothing fancy.
 
-Under the hood, ImmutableArray uses SSTORE2 to store the elements of the array whi ch is known as leveraging _Code-as-Storage_ (CaS) pattern.
+Under the hood, ImmutableArray uses SSTORE2 to store the elements of the array which is known as leveraging _Code-as-Storage_ (CaS) pattern.
 
 ### When to use ImmutableArray over Solidity arrays:
 
@@ -42,10 +42,10 @@ contract ImmutableArrayExample {
 
 > How to reproduce: forge test --mt=testGas
 
-| Length: 3            |                     | Static size array | Dynamic size array | ImmutableArray |
-| -------------------- | ------------------- | ----------------- | ------------------ | -------------- |
-| testGas_getArray()   | Read entire array   | 12936             | 15406              | 10305          |
-| testGas_getArrayAt() | Read single element | 7623              | 9780               | 8839           |
+| Length: 3            |                     | Dynamic size array | Static size array | ImmutableArray | Immutable LValue x3 |
+| -------------------- | ------------------- | ------------------ | ----------------- | -------------- | ------------------- |
+| `getArray()`         | Read entire array   | 15283              | 12813             | 10182          | 6362                |
+| Avg. `getArrayAt(i)` | Read single element | 5259               | 4436              | 3985           | 2575                |
 
 ### Requirements
 

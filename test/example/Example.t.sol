@@ -15,7 +15,19 @@ abstract contract ExampleBaseTest is Test {
     address[] testArray = [address(0x1234), address(0x5678), address(0x9ABC)];
 
     function testGas_getArray() public view virtual {
+        uint256 _before = gasleft();
         example.getArray();
+        console2.log("gas usage: ", _before - gasleft());
+    }
+
+    function testGas_getArrayAt_Avg() public view {
+        uint256 used;
+        for (uint256 i = 0; i < testArray.length; i++) {
+            uint256 _before = gasleft();
+            example.getArrayAt(i);
+            used += _before - gasleft() - 2;
+        }
+        console2.log("gas usage avg: ", used / testArray.length);
     }
 
     function test_getArray() public virtual {
@@ -87,7 +99,9 @@ contract StaticSizeArray3ExampleTest is ExampleBaseTest {
     }
 
     function testGas_getArray() public view override {
+        uint256 _before = gasleft();
         StaticSizeArray3Example(address(example)).getArray();
+        console2.log("gas usage: ", _before - gasleft());
     }
 }
 
@@ -113,7 +127,9 @@ contract StaticSizeArray6ExampleTest is ExampleBaseTest {
     }
 
     function testGas_getArray() public view override {
+        uint256 _before = gasleft();
         StaticSizeArray6Example(address(example)).getArray();
+        console2.log("gas usage: ", _before - gasleft());
     }
 }
 
@@ -133,6 +149,8 @@ contract ImmutableValue3ExampleTest is ExampleBaseTest {
     }
 
     function testGas_getArray() public view override {
+        uint256 _before = gasleft();
         ImmutableValue3Example(address(example)).getArray();
+        console2.log("gas usage: ", _before - gasleft());
     }
 }
